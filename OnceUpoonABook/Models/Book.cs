@@ -2,11 +2,29 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using OnceUpoonABook.Data.Base;
 using OnceUpoonABook.Data.Enums;
+using OnceUpoonABook.Data.ViewModels;
 
 namespace OnceUpoonABook.Models
 {
     public class Book: IEntityBase
     {
+        public Book()
+        {
+
+        }
+        public Book(AddBookViewModel addBookViewModel)
+        {
+            Title = addBookViewModel.Title;
+            CoverURL = addBookViewModel.CoverURL;
+            PublicationYear = addBookViewModel.PublicationYear;
+            Pages = addBookViewModel.Pages;
+            Price = addBookViewModel.Price;
+            BookCategory = addBookViewModel.BookCategory;
+            Language = addBookViewModel.Language;
+            PublisherId = addBookViewModel.PublisherId;
+
+        }
+
         [Key]
         public int Id { get; set; }
 

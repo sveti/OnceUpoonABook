@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using OnceUpoonABook.Data.Base;
+using OnceUpoonABook.Data.ViewModels;
 using OnceUpoonABook.Models;
 
 namespace OnceUpoonABook.Data.Services
@@ -8,8 +10,15 @@ namespace OnceUpoonABook.Data.Services
     {
         private readonly AppDBContext appDBContext;
 
-        public AuthorService(AppDBContext appDBContext): base(appDBContext) { }
+        public AuthorService(AppDBContext appDBContext): base(appDBContext) { 
+        
+        }
 
+        public Author Add(AddBookNewAuthorViewModel addBookNewAuthor)
+        {
+            var author = new Author(addBookNewAuthor);
+            return Add(author);    
 
+        }
     }
 }

@@ -1,6 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using OnceUpoonABook.Data;
 using OnceUpoonABook.Data.Services;
+using System.Globalization;
+
+//fix of double issues
+System.Globalization.CultureInfo customCulture = new CultureInfo("en-US");
+customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+CultureInfo.DefaultThreadCurrentCulture = customCulture;
+CultureInfo.DefaultThreadCurrentUICulture = customCulture;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

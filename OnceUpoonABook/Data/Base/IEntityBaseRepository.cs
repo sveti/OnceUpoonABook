@@ -8,7 +8,7 @@ namespace OnceUpoonABook.Data.Base
         IEnumerable<T> GetAll();
         IEnumerable<T> GetAll(params Expression<Func<T, object>>[] expressions);
         T GetById(int id);
-        void Add(T entity);
+        T Add(T entity);
         T Update(int id, T entity);
         void Delete(int id);
         Task<IEnumerable<T>> GetAllAsync();
@@ -16,9 +16,6 @@ namespace OnceUpoonABook.Data.Base
         Task AddAsync(T entity);
         Task UpdateAsync(int id, T entity);
         Task DeleteAsync(int id);
-
-        IEnumerable<Book> GetAllBooks();
-        IEnumerable<Book> GetBookById(int id);
 
     }
 }

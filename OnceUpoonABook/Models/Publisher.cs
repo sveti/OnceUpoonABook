@@ -9,13 +9,13 @@ namespace OnceUpoonABook.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Name of the publihser is required")]
+        [Required(ErrorMessage ="Name of the publisher is required")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Year of creation is required")]
         public int YearCreated { get; set; }
 
 		[Display(Name = "Logo")]
-        [Required(ErrorMessage = "Link to the logo of the publihser is required")]
+        [Required(ErrorMessage = "Link to the logo of the publisher is required")]
         public string LogoURL { get; set; }
 
         [AllowNull]

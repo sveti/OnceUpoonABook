@@ -1,4 +1,5 @@
 ﻿using OnceUpoonABook.Data.Base;
+using OnceUpoonABook.Data.ViewModels;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
@@ -6,6 +7,18 @@ namespace OnceUpoonABook.Models
 {
 	public class Author: IEntityBase
 	{
+        public Author()
+        {
+
+        }
+        public Author(AddBookNewAuthorViewModel addBookNewAuthor)
+        {
+            AuthorName = addBookNewAuthor.AuthorName;
+            AuthorDescription = addBookNewAuthor.AuthorDescription;
+            AuthorProfilePicURL = addBookNewAuthor.AuthorProfilePicURL;
+ 
+        }
+
         [Key]
         public int Id { get; set; }
 

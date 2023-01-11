@@ -3,67 +3,60 @@
 @{
     ViewData["Title"] = "List of all Books";
 }
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Once Upon A book</h1>
+    </div>
+</section>
 
 <div class="row">
-   @foreach (var item in Model)
+    @foreach (var item in Model)
     {
-        <div class="col-md-4 col-xs-6 border-primary mb-3">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-12">
-                        <div class="card-header text-white bg-purple">
-                            <p class="card-text">
-                                <h5 class="card-title">
-                                    @item.Title
-                                </h5>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <img src="@item.CoverURL" width="100%"
-                        height="400px"
-                        alt="@item.Title">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <p class="card-text"><b class="text-dark-purple">Publisher: </b>@item.Publisher.Name</p>
-                            <p class="card-text"><b class="text-dark-purple">Category: </b><span class="badge badge-pill badge-light-purple">@item.BookCategory.ToString()</span></p>
-                            <p class="card-text"><b class="text-dark-purple">Language: </b><span class="badge badge-pill badge-light-purple">@item.Language.ToString()</span></p>
-                            <p class="card-text">
 
-                                    @if (@item.Author_Book.Count() < 2)
-                                    {
-                                    <b>Author: </b> @item.Author_Book.FirstOrDefault().Author.AuthorName
-                                }
-                                else
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="@item.CoverURL" class="w-100 card-img-top" height="600px" alt="@item.Title">
+                <div class="card-body">
+                    <p class="card-title">@item.Title</p>
+                    <p class="card-text">
+                    <p class="card-text"><b class="text-dark-purple">Publisher: </b><a asp-controller="Publishers" asp-action="Details" asp-route-id="@item.Publisher.Id">@item.Publisher.Name</a></p>
+                    <p class="card-text"><b class="text-dark-purple">Category: </b><span class="badge badge-pill badge-light-purple">@item.BookCategory.ToString()</span></p>
+                    <p class="card-text"><b class="text-dark-purple">Language: </b><span class="badge badge-pill badge-light-purple">@item.Language.ToString()</span></p>
+                    <p class="card-text">
+
+                            @if (@item.Author_Book.Count() < 2)
+                            {
+                            <b>Author: </b> @item.Author_Book.FirstOrDefault().Author.AuthorName
+                            }
+                            else
+                            {
+                            <b>Authors: </b>
+                                @foreach (var au in @item.Author_Book)
                                 {
-                                    <b>Authors: </b>
-                                    @foreach (var au in @item.Author_Book)
-                                    {
-                                        <span>
-                                            @au.Author.AuthorName </span>
-                                    }
+                                <span>
+                                        @au.Author.AuthorName
+                                </span>
                                 }
+                            }
 
-                            </p>
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi bi-eye"></i> View
+                            </a>
+                            <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="bi bi-pen"></i>Edit
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card-footer row">
-                            <div class="card-text col-lg-6 col-md-12">
-                                <a class="btn btn-outline-dark-purple float-right" asp-action="Details" asp-route-id="@item.Id">
-                                    <i class="bi bi-eye-fill"></i> Show Details
-                                </a>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
+                        <small class="text-muted">
                             <a class="btn btn-success text-white float-end"
                            asp-controller="Orders"
                            asp-action="AddItemToShoppingCart"
                            asp-route-id="@item.Id">
                                 <i class="bi bi-cart-plus"></i> @item.Price £
                             </a>
-                        </div>
-                        </div>
+                        </small>
                     </div>
                 </div>
             </div>

@@ -15,10 +15,11 @@ namespace OnceUpoonABook.Data.Base
             this.appDBContext = appDBContext;   
         }
 
-        public void Add(T entity)
+        public T Add(T entity)
         {
             appDBContext.Set<T>().Add(entity);
             appDBContext.SaveChanges();
+            return entity;
         }
 
         public async Task AddAsync(T entity)
@@ -68,16 +69,6 @@ namespace OnceUpoonABook.Data.Base
         {
             var result = await appDBContext.Set<T>().ToListAsync();
             return result;
-        }
-
-        public IEnumerable<Book> GetAllBooks()
-        {
-            return appDBContext.Books.Include(item => item.Publisher).Include(item => item.Author_Book).ThenInclude(authorbook => authorbook.Author).ToList();
-        }
-
-        public IEnumerable<Book> GetBookById(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public T GetById(int id)
