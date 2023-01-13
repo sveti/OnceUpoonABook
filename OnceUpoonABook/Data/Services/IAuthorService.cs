@@ -7,5 +7,6 @@ namespace OnceUpoonABook.Data.Services
     public interface IAuthorService: IEntityBaseRepository<Author>
     {
         Author Add(AddBookNewAuthorViewModel addBookNewAuthor);
+        void DeleteAuthor(int id);
     }
 }

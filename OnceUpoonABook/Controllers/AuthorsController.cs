@@ -82,7 +82,7 @@ namespace OnceUpoonABook.Controllers
             var actorDetails =  authorService.GetById(id);
             if (actorDetails == null) return View("Error");
 
-            authorService.Delete(id);
+            authorService.DeleteAuthor(id);
             return RedirectToAction(nameof(Index));
         }
 

@@ -9,6 +9,11 @@
     </div>
 </section>
 
+<div class="row mb-3 mt-2">
+    <div class="col-md-2 offset-md-10 col-sm-12 x">
+        <a class="btn btn-outline-primary float-right" asp-action="Add"><i class="bi bi-plus"></i>Add A Book</a>
+    </div>
+</div>
 <div class="row">
     @foreach (var item in Model)
     {
@@ -47,6 +52,9 @@
                             </a>
                             <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
                                 <i class="bi bi-pen"></i>Edit
+                            </a>
+                                  <a class="btn btn-sm btn-outline-secondary" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="bi bi-trash"></i>Delete
                             </a>
                         </div>
                         <small class="text-muted">

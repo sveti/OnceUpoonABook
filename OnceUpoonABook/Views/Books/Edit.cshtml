@@ -1,0 +1,106 @@
+﻿@using OnceUpoonABook.Data.Enums;
+@using OnceUpoonABook.Data.ViewModels;
+@model EditBookViewModel
+
+
+@{
+    ViewData["Title"] = "Edit A Book";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Edit @Model.Book.Title</h4>
+        </p>
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit" asp-route-id="@Model.Book.Id">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="@Model.Book.Title" class="control-label"></label>
+                                <input asp-for="@Model.Book.Title" class="form-control" />
+                                <span asp-validation-for="@Model.Book.Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Book.PublicationYear" class="control-label"></label>
+                                <input asp-for="@Model.Book.PublicationYear" type="number" class="form-control" />
+                                <span asp-validation-for="@Model.Book.PublicationYear" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Book.Pages" class="control-label"></label>
+                                <input asp-for="@Model.Book.Pages" type="number" class="form-control" />
+                                <span asp-validation-for="@Model.Book.Pages" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Book.Price" class="control-label"></label>
+                                <input asp-for="@Model.Book.Price" class="form-control" />
+                                <span asp-validation-for="@Model.Book.Price" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Book.CoverURL" class="control-label"></label>
+                                <input asp-for="@Model.Book.CoverURL" class="form-control" />
+                                <span asp-validation-for="@Model.Book.CoverURL" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="@Model.Book.PublisherId" class="control-label"></label>
+                                <select asp-for="@Model.Book.PublisherId" class="form-control">
+                                    @foreach (var item in ViewBag.Publishers)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="@Model.Book.PublisherId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Book.BookCategory" class="control-label"></label>
+                                <select asp-for="@Model.Book.BookCategory" class="form-control" asp-items="Html.GetEnumSelectList<BookCategory>()"></select>
+                                <span asp-validation-for="@Model.Book.BookCategory" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Book.Language" class="control-label"></label>
+                                <select asp-for="@Model.Book.Language" class="form-control" asp-items="Html.GetEnumSelectList<Language>()"></select>
+                                <span asp-validation-for="@Model.Book.Language" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="AuthorIds" class="control-label"></label>
+                                <select asp-for="AuthorIds" class="form-control" multiple>
+                                    @foreach (var item in ViewBag.Authors)
+                                    {
+                                        <option value="@item.Id" selected="@Model.Book.Author_Book.Any(ab => ab.AuthorId == item.Id)">@item.AuthorName</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="AuthorIds" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 offset-4 text-center">
+                        <img width="100%" id="CoverURL" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-outline-success float-right" />
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $("#CoverURL").on("change", function () {
+            var output = document.getElementById("CoverURL");
+            output.src = $(this).val();
+        })
+    </script>
+}

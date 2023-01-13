@@ -47,6 +47,7 @@
                         <li>Language: <span class="badge badge-pill badge-light-purple">@Model.Language.ToString()</span></li>
                         <li>Pages: @Model.Pages</li>
                         <li>Year Published: @Model.PublicationYear</li>
+                        <li><a class="btn btn-outline-primary" asp-controller="Books" asp-action="Edit" asp-route-id="@Model.Id"><i class="bi bi-pencil-square"></i>Edit </a></li>
                     </ul>
                 </div>
             </div>

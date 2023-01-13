@@ -64,6 +64,57 @@ namespace OnceUpoonABook.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Edit(int id)
+        {
+            var publishers = publisherService.GetAll().OrderBy(publisher => publisher.Name);
+            var authors = authorService.GetAll().OrderBy(author => author.AuthorName);
+
+            ViewBag.Authors = authors;
+            ViewBag.Publishers = publishers;
+
+            var book = bookService.GetBookById(id);
+            EditBookViewModel editBookViewModel = new EditBookViewModel();
+            editBookViewModel.Book = book;  
+            return View(editBookViewModel);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(int id, EditBookViewModel bookViewModel)
+        {
+            bookViewModel.Book.Id = id;
+            bookService.UpdateBook(bookViewModel);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        public IActionResult Delete(int id)
+        {
+
+            var bookdetails = bookService.GetBookById(id);
+            if (bookdetails == null) return View("Error");
+
+            var publishers = publisherService.GetAll().OrderBy(publisher => publisher.Name);
+            var authors = authorService.GetAll().OrderBy(author => author.AuthorName);
+
+            ViewBag.Authors = authors;
+            ViewBag.Publishers = publishers;
+            EditBookViewModel editBookViewModel = new EditBookViewModel();
+            editBookViewModel.Book = bookdetails;
+            return View(editBookViewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmation(int id)
+        {
+            var bookdetails = bookService.GetBookById(id);
+            if (bookdetails == null) return View("Error");
+
+            bookService.DeleteBook(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 
 }

@@ -25,6 +25,19 @@ namespace OnceUpoonABook.Models
 
         }
 
+        public Book(EditBookViewModel bookViewModel)
+        {
+            Id = bookViewModel.Book.Id;
+            Title = bookViewModel.Book.Title;
+            CoverURL = bookViewModel.Book.CoverURL;
+            PublicationYear = bookViewModel.Book.PublicationYear;
+            Pages = bookViewModel.Book.Pages;
+            Price = bookViewModel.Book.Price;
+            BookCategory = bookViewModel.Book.BookCategory;
+            Language = bookViewModel.Book.Language;
+            PublisherId = bookViewModel.Book.PublisherId;
+        }
+
         [Key]
         public int Id { get; set; }
 

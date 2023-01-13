@@ -12,22 +12,18 @@
         <div class="row">
             <div class="col-md-8 offset-2">
                 <div class="form-group text-center">
-                    <img id="PublisherImage" class="border-info rounded-circle" style="max-width: 150px" />
+                    <img id="LogoURL"
+                         alt="@Model.LogoURL"
+                         class="border-info rounded-circle" style="max-width: 150px" src="@Model.LogoURL" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="LogoURL" class="control-label"></label>
-                    <input asp-for="LogoURL" class="form-control" readonly />
+                    <p class="col-3 fw-bold">Publisher Name:</p>
+                    <p class="col-9">@Model.Name</p>
 
                 </div>
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" readonly />
-
-                </div>
-                <div class="form-group">
-                    <label asp-for="YearCreated" class="control-label"></label>
-                    <input asp-for="YearCreated" class="form-control" readonly />
-
+                    <p class="col-3 fw-bold">Year Created:</p>
+                    <p class="col-9">@Model.YearCreated</p>
                 </div>
 
                 <div class="form-group">
