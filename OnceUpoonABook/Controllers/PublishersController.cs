@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnceUpoonABook.Data;
 using OnceUpoonABook.Data.Services;
@@ -6,7 +7,8 @@ using OnceUpoonABook.Models;
 
 namespace OnceUpoonABook.Controllers
 {
-	public class PublishersController : Controller
+    [Authorize]
+    public class PublishersController : Controller
 	{
 
         private readonly IPublisherService publisherService;

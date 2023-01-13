@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnceUpoonABook.Data;
@@ -7,6 +8,7 @@ using OnceUpoonABook.Data.ViewModels;
 
 namespace OnceUpoonABook.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
         private readonly IBookService bookService;
@@ -20,7 +22,7 @@ namespace OnceUpoonABook.Controllers
             this.publisherService = publisherService;
             this.authorService = authorService;
         }
-
+        
         public IActionResult Index()
         {
             var allBooks = bookService.GetAllBooks();

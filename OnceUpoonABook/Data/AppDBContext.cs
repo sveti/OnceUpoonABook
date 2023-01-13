@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using OnceUpoonABook.Areas.Identity.Data;
 using OnceUpoonABook.Models;
 
 namespace OnceUpoonABook.Data
 {
-	public class AppDBContext: DbContext
+	public class AppDBContext: IdentityDbContext<OnceUpoonABookUser>
 	{
 		public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
 		{
