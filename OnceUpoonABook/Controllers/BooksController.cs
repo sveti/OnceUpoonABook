@@ -22,19 +22,20 @@ namespace OnceUpoonABook.Controllers
             this.publisherService = publisherService;
             this.authorService = authorService;
         }
-        
+
+        [Authorize(Roles = "Admin,Member")]
         public IActionResult Index()
         {
             var allBooks = bookService.GetAllBooks();
             return View(allBooks);
         }
-
+        [Authorize(Roles = "Admin,Member")]
         public IActionResult Details(int id)
         {
             var book = bookService.GetBookById(id);
             return View(book);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             var publishers = publisherService.GetAll().OrderBy(publisher => publisher.Name);
@@ -47,6 +48,7 @@ namespace OnceUpoonABook.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add(AddBookViewModel addBookViewModel)
         {
 
@@ -66,7 +68,7 @@ namespace OnceUpoonABook.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var publishers = publisherService.GetAll().OrderBy(publisher => publisher.Name);
@@ -83,6 +85,7 @@ namespace OnceUpoonABook.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, EditBookViewModel bookViewModel)
         {
             bookViewModel.Book.Id = id;
@@ -91,7 +94,7 @@ namespace OnceUpoonABook.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
 
@@ -109,6 +112,7 @@ namespace OnceUpoonABook.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmation(int id)
         {
             var bookdetails = bookService.GetBookById(id);

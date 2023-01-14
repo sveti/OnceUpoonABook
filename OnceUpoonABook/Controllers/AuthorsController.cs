@@ -16,18 +16,20 @@ namespace OnceUpoonABook.Controllers
         {
             this.authorService = authorService;
         }
-
+        [Authorize(Roles = "Admin,Member")]
         public IActionResult Index()
         {
             var allAuthors = authorService.GetAll().OrderBy(author => author.AuthorName);
             return View(allAuthors);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Add([Bind("AuthorProfilePicURL,AuthorDescription,AuthorName")] Author author)
         {
@@ -42,6 +44,8 @@ namespace OnceUpoonABook.Controllers
 
 
         }
+
+        [Authorize(Roles = "Admin,Member")]
         public async Task<IActionResult> Details(int id)
         {
             var actorDetails = authorService.GetById(id);
@@ -49,6 +53,7 @@ namespace OnceUpoonABook.Controllers
             return View(actorDetails);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var actorDetails = authorService.GetById(id);
@@ -57,6 +62,7 @@ namespace OnceUpoonABook.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, Author author)
         {
             if (!ModelState.IsValid)
@@ -71,6 +77,7 @@ namespace OnceUpoonABook.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var actorDetails = authorService.GetById(id);
@@ -79,6 +86,7 @@ namespace OnceUpoonABook.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmation(int id)
         {
             var actorDetails =  authorService.GetById(id);

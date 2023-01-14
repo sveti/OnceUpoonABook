@@ -17,19 +17,20 @@ namespace OnceUpoonABook.Controllers
 		{
 			this.publisherService = publisherService;
 		}
-
+        [Authorize(Roles = "Admin,Member")]
         public IActionResult Index()
         {
             var allPublishers = publisherService.GetAll().OrderBy(publisher => publisher.Name);
             return View(allPublishers);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")] 
         public async Task<IActionResult> Add([Bind("Name,YearCreated,LogoURL")] Publisher publisher)
         {
             if (!ModelState.IsValid)
@@ -43,13 +44,14 @@ namespace OnceUpoonABook.Controllers
 
 
         }
+        [Authorize(Roles = "Admin,Member")]
         public async Task<IActionResult> Details(int id)
         {
             var publisherDetails = publisherService.GetById(id);
             if (publisherDetails == null) return View("Error");
             return View(publisherDetails);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var publisherDetails = publisherService.GetById(id);
@@ -58,6 +60,7 @@ namespace OnceUpoonABook.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, Publisher publisher)
         {
             if (!ModelState.IsValid)
@@ -71,7 +74,7 @@ namespace OnceUpoonABook.Controllers
 
 
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var publisher = publisherService.GetById(id);
@@ -80,6 +83,7 @@ namespace OnceUpoonABook.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmation(int id)
         {
             var publisher = publisherService.GetById(id);

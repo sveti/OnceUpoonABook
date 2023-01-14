@@ -8,12 +8,14 @@
         <h1 class="jumbotron-heading">Once Upon A book</h1>
     </div>
 </section>
-
-<div class="row mb-3 mt-2">
-    <div class="col-md-2 offset-md-10 col-sm-12 x">
-        <a class="btn btn-outline-primary float-right" asp-action="Add"><i class="bi bi-plus"></i>Add A Book</a>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <div class="row mb-3 mt-2">
+        <div class="col-md-2 offset-md-10 col-sm-12 x">
+            <a class="btn btn-outline-primary float-right" asp-action="Add"><i class="bi bi-plus"></i>Add A Book</a>
+        </div>
     </div>
-</div>
+}
 <div class="row">
     @foreach (var item in Model)
     {
@@ -50,21 +52,28 @@
                             <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">
                                 <i class="bi bi-eye"></i> View
                             </a>
-                            <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
-                                <i class="bi bi-pen"></i>Edit
-                            </a>
-                                  <a class="btn btn-sm btn-outline-secondary" asp-action="Delete" asp-route-id="@item.Id">
-                                <i class="bi bi-trash"></i>Delete
-                            </a>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="bi bi-pen"></i>Edit
+                                </a>
+                                <a class="btn btn-sm btn-outline-secondary" asp-action="Delete" asp-route-id="@item.Id">
+                                    <i class="bi bi-trash"></i>Delete
+                                </a>
+                                }
+
                         </div>
-                        <small class="text-muted">
-                            <a class="btn btn-success text-white float-end"
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                            {
+                            <small class="text-muted">
+                                <a class="btn btn-success text-white float-end"
                            asp-controller="Orders"
                            asp-action="AddItemToShoppingCart"
                            asp-route-id="@item.Id">
-                                <i class="bi bi-cart-plus"></i> @item.Price £
-                            </a>
-                        </small>
+                                    <i class="bi bi-cart-plus"></i> @item.Price £
+                                </a>
+                            </small>
+                            }
                     </div>
                 </div>
             </div>
