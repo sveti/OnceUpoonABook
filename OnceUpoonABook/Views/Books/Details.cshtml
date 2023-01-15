@@ -36,15 +36,23 @@
                     <h4 class="box-title mt-5">Information</h4>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
                     {
+                        <div>
                         <small class="text-muted">
-                            <a class="btn btn-success text-white"
+                            <a class="btn btn-success text-white float-end"
                            asp-controller="Orders"
-                           asp-action="AddItemToShoppingCart"
+                           asp-action="AddToShoppingCart"
                            asp-route-id="@Model.Id">
                                 <i class="bi bi-cart-plus"></i> @Model.Price £
                             </a>
                         </small>
+                        </div>
                     }
+                    <div>
+                        <h5 class="box-title mt-5">Description:</h5>
+                    <p>
+                        @Model.Description
+                    </p>
+                   </div>
                     <ul class="list-unstyled">
                         <li>Publisher: <a asp-controller="Publishers" asp-action="Details" asp-route-id="@Model.Publisher.Id">@Model.Publisher.Name</a></li>
                         <li>Category: <span class="badge badge-pill badge-light-purple">@Model.BookCategory.ToString()</span></li>

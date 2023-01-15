@@ -1,10 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using OnceUpoonABook.Data;
-using OnceUpoonABook.Data.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using OnceUpoonABook.Areas.Identity.Data;
 using Microsoft.Extensions.DependencyInjection;
+using OnceUpoonABook.Data.Services.Books;
+using OnceUpoonABook.Data.Services.Authors;
+using OnceUpoonABook.Data.Services.Publishers;
+using OnceUpoonABook.Data.Services.Orders;
+using OnceUpoonABook.Data.Services.Orders.ShoppingCart;
 
 //fix of double issues
 System.Globalization.CultureInfo customCulture = new CultureInfo("en-US");
@@ -34,8 +38,13 @@ builder.Services.AddIdentity<OnceUpoonABookUser, IdentityRole>(options => option
 builder.Services.AddScoped<IAuthorService,AuthorService>();
 builder.Services.AddScoped<IPublisherService,PublisherService>();
 builder.Services.AddScoped<IBookService,BookService>();
+builder.Services.AddScoped<IOrdersService,OrdersService>();
 
 builder.Services.AddRazorPages();
+
+//shopping cart
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+
 
 ///stop the null screaming
 builder.Services.AddControllers(

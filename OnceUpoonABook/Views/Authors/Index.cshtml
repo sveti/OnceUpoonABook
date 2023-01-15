@@ -4,9 +4,12 @@
     ViewData["Title"] = "List of all Authors";
 }
 
-<div class="row align-items-end">
-    <a class="btn btn-outline-primary" asp-action="Add"><i class="bi bi-plus"></i>Add An Author</a>
-</div>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <div class="row align-items-end">
+        <a class="btn btn-outline-primary" asp-action="Add"><i class="bi bi-plus"></i>Add An Author</a>
+    </div>
+}
 <div class="row">
     <div class="col-md-8 offset-md-2">
         <table class="table">

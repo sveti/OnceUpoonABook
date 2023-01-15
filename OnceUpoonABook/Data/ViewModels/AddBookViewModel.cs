@@ -10,6 +10,10 @@ namespace OnceUpoonABook.Data.ViewModels
         [Required(ErrorMessage ="Title is required")]
         public string Title { get; set; }
 
+
+        [Required(ErrorMessage = "Description is required")]
+        public string Description { get; set; }
+
         [Required(ErrorMessage = "Book cover is required")]
         [Display(Description ="Book Cover URL")]
         public string CoverURL { get; set; }

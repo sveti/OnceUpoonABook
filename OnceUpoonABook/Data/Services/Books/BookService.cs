@@ -3,20 +3,21 @@ using OnceUpoonABook.Data.Base;
 using OnceUpoonABook.Data.ViewModels;
 using OnceUpoonABook.Models;
 
-namespace OnceUpoonABook.Data.Services
+namespace OnceUpoonABook.Data.Services.Books
 {
     public class BookService : EntityBaseRepository<Book>, IBookService
     {
         private readonly AppDBContext appDBContext;
 
-        public BookService(AppDBContext appDBContext) : base(appDBContext) {
+        public BookService(AppDBContext appDBContext) : base(appDBContext)
+        {
             this.appDBContext = appDBContext;
         }
 
         public Book Add(AddBookViewModel addBookViewModel)
         {
             var book = new Book(addBookViewModel);
-            var addedBook =  Add(book);
+            var addedBook = Add(book);
 
             foreach (var authorId in addBookViewModel.AuthorIds)
             {
@@ -51,14 +52,14 @@ namespace OnceUpoonABook.Data.Services
 
         public Book GetBookById(int id)
         {
-            return appDBContext.Books.Include(item => item.Publisher).Include(item => item.Author_Book).ThenInclude(authorbook => authorbook.Author).FirstOrDefault( item=> item.Id == id);
+            return appDBContext.Books.Include(item => item.Publisher).Include(item => item.Author_Book).ThenInclude(authorbook => authorbook.Author).FirstOrDefault(item => item.Id == id);
         }
 
         public void UpdateBook(EditBookViewModel bookViewModel)
         {
             var updatedBook = new Book(bookViewModel);
             appDBContext.Books.Update(updatedBook);
-            
+
             //remove all relationships
             appDBContext.Authors_Books.RemoveRange(appDBContext.Authors_Books.Where(ab => ab.BookId == updatedBook.Id));
 
@@ -76,5 +77,5 @@ namespace OnceUpoonABook.Data.Services
             appDBContext.SaveChanges();
         }
     }
-   
+
 }

@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnceUpoonABook.Data;
-using OnceUpoonABook.Data.Services;
+using OnceUpoonABook.Data.Services.Authors;
+using OnceUpoonABook.Data.Services.Books;
+using OnceUpoonABook.Data.Services.Publishers;
 using OnceUpoonABook.Data.ViewModels;
 
 namespace OnceUpoonABook.Controllers

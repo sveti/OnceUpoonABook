@@ -77,7 +77,8 @@ namespace OnceUpoonABook.Data
                             Language = Enums.Language.English,
                             PublisherId = 1,
                             CoverURL="https://static.wikia.nocookie.net/discworld/images/7/76/TCoM_cover.jpg/revision/latest?cb=20070107074953",
-                            Price = 8.49
+                            Price = 8.49,
+                            Description="In a world supported on the back of a giant turtle (sex unknown), a gleeful, explosive, wickedly eccentric expedition sets out. There's an avaricious but inept wizard, a naive tourist whose luggage moves on hundreds of dear little legs, dragons who only exist if you believe in them, and of course THE EDGE of the planet..."
 
                         },
                         new Book()
@@ -89,7 +90,8 @@ namespace OnceUpoonABook.Data
                             Language = Enums.Language.English,
                             PublisherId = 1,
                             CoverURL="https://m.media-amazon.com/images/I/51f63bXc2NL.jpg",
-                            Price = 8.99
+                            Price = 8.99,
+                            Description="Nobody Owens, known to his friends as Bod, is a perfectly normal boy. Well, he would be perfectly normal if he didn't live in a graveyard, being raised and educated by ghosts, with a solitary guardian who belongs to neither the world of the living nor the world of the dead."
 
                         },
                           new Book()
@@ -101,7 +103,8 @@ namespace OnceUpoonABook.Data
                             Language = Enums.Language.English,
                             PublisherId = 2,
                             CoverURL="https://cdn.ozone.bg/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/g/o/571d3020ca7d9df9806ca66f0a390d24/good-omens-30.jpg",
-                            Price = 9.49
+                            Price = 9.49,
+                            Description="People have been predicting the end of the world almost from its very beginning, so it’s only natural to be sceptical when a new date is set for Judgement Day. This time though, the armies of Good and Evil really do appear to be massing. The four Bikers of the Apocalypse are hitting the road. But both the angels and demons – well, one fast-living demon and a somewhat fussy angel – would quite like the Rapture not to happen."
 
                         }
 

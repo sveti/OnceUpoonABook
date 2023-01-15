@@ -33,6 +33,9 @@ namespace OnceUpoonABook.Data
 		public DbSet<Book> Books { get; set; }
 		public DbSet<Publisher> Publishers { get; set; }
 		public DbSet<Author_Book> Authors_Books { get; set; }
+		public DbSet<Order> Orders { get; set; }
+		public DbSet<OrderItem> OrderItems { get; set; }
+		public DbSet<CartItem> CartItems { get; set; }
 
     }
 }

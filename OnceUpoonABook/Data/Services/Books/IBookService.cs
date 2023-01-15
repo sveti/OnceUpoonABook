@@ -2,9 +2,9 @@
 using OnceUpoonABook.Data.ViewModels;
 using OnceUpoonABook.Models;
 
-namespace OnceUpoonABook.Data.Services
+namespace OnceUpoonABook.Data.Services.Books
 {
-    public interface IBookService: IEntityBaseRepository<Book>
+    public interface IBookService : IEntityBaseRepository<Book>
     {
         IEnumerable<Book> GetAllBooks();
         Book GetBookById(int id);

@@ -1,7 +1,7 @@
 ﻿using OnceUpoonABook.Data.Base;
 using OnceUpoonABook.Models;
 
-namespace OnceUpoonABook.Data.Services
+namespace OnceUpoonABook.Data.Services.Publishers
 {
     public class PublisherService : EntityBaseRepository<Publisher>, IPublisherService
     {

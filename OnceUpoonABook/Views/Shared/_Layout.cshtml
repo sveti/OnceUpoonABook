@@ -25,23 +25,33 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav">
-                            <li class="navbar-nav flex-grow-1">
-                                 <a class="nav-link" asp-controller="Books" asp-action="Index"><i class="bi bi-book mx-1"></i>Books</a>
-                            </li>
+                        <li class="navbar-nav flex-grow-1">
+                            <a class="nav-link" asp-controller="Books" asp-action="Index"><i class="bi bi-book mx-1"></i>Books</a>
+                        </li>
                         <li class="navbar-nav">
                             <a class="nav-link" asp-controller="Authors" asp-action="Index"><i class="bi bi-pen mx-1"></i>Authors</a>
                         </li>
                         <li class="navbar-nav">
                             <a class="nav-link" asp-controller="Publishers" asp-action="Index"><i class="bi bi-archive mx-1"></i>Publishers</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                        {
+                            <li class="navbar-nav">
+                                <a class="nav-link" asp-controller="Orders" asp-action="Index"><i class="bi bi-card-checklist"></i>Orders</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="Orders" asp-action="ShoppingCart"><i class="bi bi-cart"></i></a>
+
+                            </li>
+                        }
                     </ul>
-                   
+
                 </div>
             </div>
 
-                <partial name="_LoginPartial" />
-       
-          
+            <partial name="_LoginPartial" />
+
+
         </nav>
     </header>
     <div class="container-fluid">
@@ -52,7 +62,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-             OnceUpoonABook - F54148
+            OnceUpoonABook - F54148
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

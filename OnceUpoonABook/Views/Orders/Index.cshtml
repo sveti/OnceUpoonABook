@@ -1,0 +1,48 @@
+﻿@using OnceUpoonABook.Data.Services.Orders;
+
+@model List<Order>
+@inject IOrdersService orderService
+
+@{
+    ViewData["Title"] = "List of Orders";
+}
+
+<div class="row">
+    <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+            <h3 class="panel-title">Orders</h3>
+        </div>
+        <table class="table">
+            <thead>
+                <tr class="filters">
+                    <th>Id</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@order.Id</td>
+                        <td class="align-middle">
+                            <ul class="list-unstyled">
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    <li class="my-2 p-2">
+                                        <div>
+                                            <span class="badge bg-secondary">@item.Amount</span> x @item.Book.Title (@item.Book.Price £)
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td class="align-middle">
+                            @orderService.GetTotal(ViewBag.UserId,order.Id) £
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

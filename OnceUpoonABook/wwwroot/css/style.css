@@ -1,30 +1,58 @@
 ﻿
 .jumbotron {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 0;
-    height: 200px;
-    background-image: url("../lib/images/booksTinted.jpg");
-    background-size: cover;
-    margin-bottom: 2rem;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 0;
+	height: 200px;
+	background-image: url("../lib/images/booksTinted.jpg");
+	background-size: cover;
+	margin-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
-    .jumbotron {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
+	.jumbotron {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
 }
 
 .jumbotron p:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .jumbotron-heading {
-    font-weight: bold;
-    
+	font-weight: bold;
 }
 
 .jumbotron .container {
-    max-width: 40rem;
+	max-width: 40rem;
 }
+
+.filterable {
+	margin-top: 15px;
+}
+
+	.filterable .panel-heading .pull-right {
+		margin-top: -20px;
+	}
+
+	.filterable .filters input[disabled] {
+		background-color: transparent;
+		border: none;
+		cursor: auto;
+		box-shadow: none;
+		padding: 0;
+		height: auto;
+	}
+
+		.filterable .filters input[disabled]::-webkit-input-placeholder {
+			color: #333;
+		}
+
+		.filterable .filters input[disabled]::-moz-placeholder {
+			color: #333;
+		}
+
+		.filterable .filters input[disabled]:-ms-input-placeholder {
+			color: #333;
+		}

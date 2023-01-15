@@ -2,9 +2,9 @@
 using OnceUpoonABook.Data.ViewModels;
 using OnceUpoonABook.Models;
 
-namespace OnceUpoonABook.Data.Services
+namespace OnceUpoonABook.Data.Services.Authors
 {
-    public interface IAuthorService: IEntityBaseRepository<Author>
+    public interface IAuthorService : IEntityBaseRepository<Author>
     {
         Author Add(AddBookNewAuthorViewModel addBookNewAuthor);
         void DeleteAuthor(int id);
