@@ -56,3 +56,6 @@
 		.filterable .filters input[disabled]:-ms-input-placeholder {
 			color: #333;
 		}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+	background-color: #5a2c9d !important;
+}

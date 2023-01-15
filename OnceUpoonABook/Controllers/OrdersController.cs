@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace OnceUpoonABook.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Member")]
     public class OrdersController : Controller
     {
         private readonly IBookService bookService;

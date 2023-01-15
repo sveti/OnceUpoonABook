@@ -2,6 +2,7 @@
 using OnceUpoonABook.Data.Base;
 using OnceUpoonABook.Data.ViewModels;
 using OnceUpoonABook.Models;
+using System.Linq;
 
 namespace OnceUpoonABook.Data.Services.Books
 {
@@ -53,6 +54,19 @@ namespace OnceUpoonABook.Data.Services.Books
         public Book GetBookById(int id)
         {
             return appDBContext.Books.Include(item => item.Publisher).Include(item => item.Author_Book).ThenInclude(authorbook => authorbook.Author).FirstOrDefault(item => item.Id == id);
+        }
+
+        public IEnumerable<Book> GetBooksByAuthorId(int authorId)
+        {
+           var authorBooks = appDBContext.Authors_Books
+                .Where(ab => ab.AuthorId == authorId).Select(ab => ab.BookId).ToList();
+
+           var allBooks =  appDBContext.Books
+          .Include(item => item.Publisher)
+          .Include(item => item.Author_Book)
+          .ThenInclude(authorbook => authorbook.Author).ToList();
+        
+            return allBooks.Where(book => authorBooks.Contains(book.Id));   
         }
 
         public void UpdateBook(EditBookViewModel bookViewModel)

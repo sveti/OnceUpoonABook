@@ -10,8 +10,8 @@ namespace OnceUpoonABook.Data.Services.Books
         Book GetBookById(int id);
         Book Add(AddBookViewModel addBookViewModel);
         void UpdateBook(EditBookViewModel bookViewModel);
-
         void DeleteBook(int id);
+        IEnumerable<Book> GetBooksByAuthorId(int authorId);
 
     }
 }
