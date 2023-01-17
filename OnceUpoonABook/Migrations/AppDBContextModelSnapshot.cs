@@ -242,7 +242,7 @@ namespace OnceUpoonABook.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("OnceUpoonABook.Models.Author_Book", b =>
@@ -257,7 +257,7 @@ namespace OnceUpoonABook.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("Authors_Books");
+                    b.ToTable("Authors_Books", (string)null);
                 });
 
             modelBuilder.Entity("OnceUpoonABook.Models.Book", b =>
@@ -302,7 +302,7 @@ namespace OnceUpoonABook.Migrations
 
                     b.HasIndex("PublisherId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("OnceUpoonABook.Models.CartItem", b =>
@@ -329,7 +329,7 @@ namespace OnceUpoonABook.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("OnceUpoonABook.Models.Order", b =>
@@ -348,7 +348,7 @@ namespace OnceUpoonABook.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("OnceUpoonABook.Models.OrderItem", b =>
@@ -377,7 +377,7 @@ namespace OnceUpoonABook.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("OnceUpoonABook.Models.Publisher", b =>
@@ -401,7 +401,7 @@ namespace OnceUpoonABook.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers");
+                    b.ToTable("Publishers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

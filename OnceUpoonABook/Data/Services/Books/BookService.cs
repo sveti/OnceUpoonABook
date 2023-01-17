@@ -38,7 +38,23 @@ namespace OnceUpoonABook.Data.Services.Books
         {
 
             appDBContext.Authors_Books.RemoveRange(appDBContext.Authors_Books.Where(ab => ab.BookId == id));
+
+            appDBContext.CartItems.RemoveRange(appDBContext.CartItems.Where(cartItem => cartItem.BookId == id));
+            appDBContext.OrderItems.RemoveRange(appDBContext.OrderItems.Where(orderItem => orderItem.BookId == id));
+            appDBContext.SaveChanges();
+
+            var allOrders = appDBContext.Orders.ToList();
+            foreach (var order in allOrders)
+            {
+                //the order doesnt have items
+                if(appDBContext.OrderItems.Any(orderItem => orderItem.OrderId == order.Id) == false)
+                {
+                    appDBContext.Orders.Remove(order);
+                }
+            }
+
             appDBContext.Books.Remove(appDBContext.Books.First(book => book.Id == id));
+            
             appDBContext.SaveChanges();
 
         }

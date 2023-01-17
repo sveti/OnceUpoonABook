@@ -8,7 +8,9 @@ namespace OnceUpoonABook.Models
     {
         [Key]
         public int Id { get; set; }
+        public int BookId { get; set; }
 
+        [ForeignKey(nameof(BookId))]
         public Book Book { get; set; }
         public int Amount { get; set; }
         public string UserId { get; set; }

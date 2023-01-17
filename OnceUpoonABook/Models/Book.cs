@@ -15,6 +15,7 @@ namespace OnceUpoonABook.Models
         public Book(AddBookViewModel addBookViewModel)
         {
             Title = addBookViewModel.Title;
+            Description = addBookViewModel.Description;
             CoverURL = addBookViewModel.CoverURL;
             PublicationYear = addBookViewModel.PublicationYear;
             Pages = addBookViewModel.Pages;
@@ -28,6 +29,7 @@ namespace OnceUpoonABook.Models
         public Book(EditBookViewModel bookViewModel)
         {
             Id = bookViewModel.Book.Id;
+            Description = bookViewModel.Book.Description;
             Title = bookViewModel.Book.Title;
             CoverURL = bookViewModel.Book.CoverURL;
             PublicationYear = bookViewModel.Book.PublicationYear;

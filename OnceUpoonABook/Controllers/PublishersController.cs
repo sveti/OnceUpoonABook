@@ -89,7 +89,7 @@ namespace OnceUpoonABook.Controllers
             var publisher = publisherService.GetById(id);
             if (publisher == null) return View("Error");
 
-            publisherService.Delete(id);
+            publisherService.DeletePublisher(id);
             return RedirectToAction(nameof(Index));
         }
     }

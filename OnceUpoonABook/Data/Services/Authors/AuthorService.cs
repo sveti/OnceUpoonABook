@@ -30,7 +30,20 @@ namespace OnceUpoonABook.Data.Services.Authors
                 var bookAuthorsCount = appDBContext.Authors_Books.Where(abDB => abDB.BookId == ab.BookId).Count();
                 if (bookAuthorsCount == 1)
                 {
-                    appDBContext.Books.Remove(appDBContext.Books.First(book => book.Id == id));
+                    appDBContext.CartItems.RemoveRange(appDBContext.CartItems.Where(cartItem => cartItem.BookId == ab.BookId));
+                    appDBContext.OrderItems.RemoveRange(appDBContext.OrderItems.Where(orderItem => orderItem.BookId == ab.BookId));
+                    appDBContext.SaveChanges();
+                    var allOrders = appDBContext.Orders.ToList();
+                    foreach (var order in allOrders)
+                    {
+                        //the order doesnt have items
+                        if (appDBContext.OrderItems.Any(orderItem => orderItem.OrderId == order.Id) == false)
+                        {
+                            appDBContext.Orders.Remove(order);
+                        }
+                    }
+
+                    appDBContext.Books.Remove(appDBContext.Books.First(book => book.Id == ab.BookId));
                 }
 
             }
